@@ -32,12 +32,6 @@ public abstract class AbstractController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D> ();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
-	}
 
 	void FixedUpdate()
 	{
