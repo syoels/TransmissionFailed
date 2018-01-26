@@ -14,7 +14,7 @@ public abstract class AbstractController : MonoBehaviour
 	protected const int RIGHT_DIRECTION = 1;
 	protected const int LEFT_DIRECTION = -1;
 
-	public abstract int moveSpeed { get; }
+	public abstract float moveSpeed { get; }
 	public Rigidbody2D rb; 
 
 	// Jump
