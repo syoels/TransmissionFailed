@@ -6,6 +6,7 @@ public class VillagerController : AbstractController {
 
 	int temprature = 0;
 	bool isBeingControlled = false;
+	Flamer target;
 
 	public override float moveSpeed { get { return 2f; }}
 	public override float jumpForce { get { return 140f; }} 
@@ -45,6 +46,14 @@ public class VillagerController : AbstractController {
         if (c.tag == "Victory") {
             onReachedVictoryPoint();
         }
+
+		if (c.tag == "ControlPoint" && !isBeingControlled && target != null) {
+			ControlPoint cp = c.GetComponent<ControlPoint> ();
+			Vector3 velocity = cp.getInstruction (target.GetInstanceID ());
+			if (velocity != Vector3.zero) {
+				rb.velocity = velocity;
+			}
+		}
     }
 
     private void onReachedVictoryPoint(){

@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 1339427969}
   - component: {fileID: 1339427968}
   - component: {fileID: 1339427966}
+  - component: {fileID: 1339427967}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -358,6 +359,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.1, y: 1.45}
   m_Direction: 0
+--- !u!114 &1339427967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1339427965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d153cb6d26ca74c8d54e11caea6104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  sr: {fileID: 0}
+  MAX_VELOCITY: 7
+  RIGHT: 275
+  LEFT: 276
+  UP: 273
+  CONTROL: 306
+  controlRadius: 10
 --- !u!50 &1339427968
 Rigidbody2D:
   serializedVersion: 4
@@ -446,7 +466,7 @@ GameObject:
   - component: {fileID: 2032852070}
   - component: {fileID: 2032852069}
   - component: {fileID: 2032852072}
-  - component: {fileID: 2032852074}
+  - component: {fileID: 2032852073}
   m_Layer: 0
   m_Name: villager
   m_TagString: Untagged
@@ -556,7 +576,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.45}
   m_EdgeRadius: 0
---- !u!114 &2032852074
+--- !u!114 &2032852073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -564,11 +584,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2032852068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7236e9fcbeb845419a09b90bef6faea, type: 3}
+  m_Script: {fileID: 11500000, guid: 5784de5deaf74df4ba12b3b5b16cadf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  RIGHT: 275
-  LEFT: 276
-  UP: 273
-  CONTROL: 306
+  moveSpeed: 0
+  jumpHeight: 0
+  groundCheck: {fileID: 0}
+  groundCheckRadius: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
