@@ -18,7 +18,7 @@ public class VillagerController : AbstractController {
 
 	void FixedUpdate() {
 		if (!isBeingControlled) {
-			MoveHorizontal (RIGHT_DIRECTION);
+			//MoveHorizontal (RIGHT_DIRECTION);
 		}
 	}
 
