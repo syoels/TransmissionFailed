@@ -7,7 +7,8 @@ public abstract class AbstractController : MonoBehaviour
 	public enum Command {
 		RIGHT, 
 		LEFT, 
-		UP
+		UP,
+		STOP
 	}
 
 	protected const int RIGHT_DIRECTION = 1;
@@ -49,15 +50,23 @@ public abstract class AbstractController : MonoBehaviour
 	protected void AttemptJump() {
 		if (jump) {
 			rb.AddForce(new Vector2(0f, jumpForce));
+//			transform.position += transform.up * Time.deltaTime * jumpForce;
 			jump = false;
 		}
 	}
 
 	protected void MoveHorizontal(int direction) {
-		Vector2 movement = Vector2.zero;
-		movement.x = (transform.right*Time.deltaTime*moveSpeed*direction).x;
-		movement += (Vector2)(transform.position);
-		rb.MovePosition(movement);
+//		Vector2 movement = Vector2.zero;
+//		movement.x = (transform.right*Time.deltaTime*moveSpeed*direction).x;
+//		movement += (Vector2)(transform.position);
+//		rb.MovePosition(movement);
+//		rb.AddForce(new Vector2(moveSpeed * direction,0f));
+		rb.velocity = new Vector2 (moveSpeed * direction, rb.velocity.y);
+		//transform.position += transform.right * moveSpeed * Time.deltaTime * direction;
+	}
+
+	protected void Stop() {
+		rb.velocity = new Vector2 (0f, rb.velocity.y);
 	}
 
 }

@@ -7,7 +7,7 @@ public class PlayerController : AbstractController {
 
     public float controlRadius = 10f;
 
-	public override int moveSpeed { get { return 1; }}
+	public override int moveSpeed { get { return 4; }}
 	public override float jumpForce { get { return 140f; }} 
 	
 	// Update is called once per frame
@@ -20,14 +20,23 @@ public class PlayerController : AbstractController {
     }
 
     private void HandleMovement(){
+		bool isMovingHorizontally = false;
+
         if (Input.GetKey(LEFT)) {
 			MoveHorizontal(LEFT_DIRECTION);
 			CommandAllVillagers (Command.LEFT);
+			isMovingHorizontally = true;
         }
         if (Input.GetKey(RIGHT)) {
 			MoveHorizontal(RIGHT_DIRECTION);
 			CommandAllVillagers (Command.RIGHT);
+			isMovingHorizontally = true;
         }
+
+		if (!isMovingHorizontally) {
+			Stop ();
+			CommandAllVillagers (Command.STOP);
+		}
 		if (Input.GetKey (UP)) {
 			HandleJumpInput ();
 			CommandAllVillagers (Command.UP);
