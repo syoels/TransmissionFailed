@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public abstract class AbstractController : MonoBehaviour
 {
 	public enum Command {
@@ -10,7 +9,7 @@ public abstract class AbstractController : MonoBehaviour
 		LEFT, 
 		UP,
 		STOP
-	}
+	} 
 
 	protected const int RIGHT_DIRECTION = 1;
 	protected const int LEFT_DIRECTION = -1;
@@ -40,7 +39,7 @@ public abstract class AbstractController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D> ();
         gm = FindObjectOfType<GameManager>();
-		sr = GetComponent<SpriteRenderer> ();
+        sr = GetComponentInChildren<SpriteRenderer> ();
 	}
 
 	void FixedUpdate()
