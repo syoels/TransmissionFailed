@@ -2,25 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillagerController : MonoBehaviour {
+public class VillagerController : AbstractController {
 
+	int temprature = 0;
 	bool isBeingControlled = false;
-	VillagerMovement villagerMovement;
-	// Use this for initialization
-	void Start () {
-		villagerMovement = GetComponent<VillagerMovement> ();
-	}
-	
+
+	public override int moveSpeed { get { return 1; }}
+	public override float jumpForce { get { return 140f; }} 
+
 	// Update is called once per frame
 	void Update () {
-		OnControllingPlayerMoveLeft ();
+		transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+		isBeingControlled = Input.GetKey (KeyCode.LeftControl);
 	}
 
-	public void OnControllingPlayerMoveLeft() {
-		villagerMovement.MoveLeft ();
+	void FixedUpdate() {
+		if (!isBeingControlled) {
+			MoveHorizontal (RIGHT_DIRECTION);
+		}
 	}
 
-	public void OnControllingPlayerMoveRight() {
-		villagerMovement.MoveRight ();
+	public void ExecuteCommand(Command c) {
+		if (isBeingControlled) {
+			switch (c) {
+			case Command.LEFT:
+				MoveHorizontal (LEFT_DIRECTION);
+				break;
+			case Command.RIGHT:
+				MoveHorizontal (RIGHT_DIRECTION);
+				break;
+			case Command.UP:
+				HandleJumpInput ();
+				break;
+			}
+		}
 	}
 }
