@@ -8,7 +8,7 @@ public class ControlPoint : MonoBehaviour {
     [System.Serializable]
     public struct Instruction {
         public Flamer target;
-        public  Vector3 velocity;
+        public  Vector2 velocity;
     }
     public Instruction[] mapping; 
 
@@ -26,11 +26,11 @@ public class ControlPoint : MonoBehaviour {
 		
 	}
 
-    public Vector3 getInstruction(int instanceID){
+    public Vector2 getInstruction(int instanceID){
         if(innerMapping.ContainsKey(instanceID)){
             return innerMapping[instanceID];
         } else {
-            return Vector3.zero;
+            return Vector2.zero;
         }
     }
 }

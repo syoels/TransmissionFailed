@@ -46,8 +46,6 @@ public class VillagerController : AbstractController {
 
     // Update is called once per frame
     void Update() {
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
-
         if (isHeadBanging) { //decided in set isBeingControlled
             float rnd = Random.Range(0f, 100f); 
             if (rnd <= chanceToChangeFlamer) {
@@ -109,8 +107,8 @@ public class VillagerController : AbstractController {
         // Follow instructions to reach target Flamer
         else if (c.tag == "ControlPoint" && !isBeingControlled && target != null) {
             ControlPoint cp = c.GetComponent<ControlPoint>();
-            Vector3 velocity = cp.getInstruction(target.GetInstanceID());
-            if (velocity != Vector3.zero) {
+            Vector2 velocity = cp.getInstruction(target.GetInstanceID());
+            if (velocity != Vector2.zero) {
                 rb.velocity = velocity;
             }
         }
@@ -118,7 +116,7 @@ public class VillagerController : AbstractController {
 
     private void OnReachedVictoryPoint() {
         gm.VillagerSaved();
-        this.enabled = false;
+		gameObject.SetActive(false);
     }
 
     private void BackToSelfControl() {
