@@ -20,7 +20,7 @@ public class VillagerController : AbstractController {
     private Flamer target;
     public int directionModifier = LEFT_DIRECTION;
 
-    public override float moveSpeed { get { return 2f; } }
+    public override float moveSpeed { get { return 3.25f; } }
 
     public override float jumpForce { get { return 140f; } }
 
