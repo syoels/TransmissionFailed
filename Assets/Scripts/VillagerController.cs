@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VillagerController : AbstractController {
+    
+    // Temperature
+    public float temprature = 0f;
+    public float TEMPERATURE_LIMIT = 10f; 
+    private float incrementTemperature = 0.05f;
 
-    int temprature = 0;
+    // Mind control
     bool isBeingControlled = false;
-    private bool prevIsBeingControlled = false;
+    private bool prevIsBeingControlled = false; 
+    public bool isHeadBanging = false;
+
     [SerializeField]
     private Flamer target;
     public int directionModifier = LEFT_DIRECTION;
@@ -21,7 +28,8 @@ public class VillagerController : AbstractController {
             isBeingControlled = value;
             if (prevIsBeingControlled && !isBeingControlled) {
                 BackToSelfControl();
-            }
+            } 
+            isHeadBanging = false;
         } 
         get { 
             return isBeingControlled;
@@ -37,10 +45,14 @@ public class VillagerController : AbstractController {
     // Update is called once per frame
     void Update() {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
-    }
+
+        if (isHeadBanging) { //decided in set isBeingControlled
+            HeadBang();
+        }
+    } 
 
     void FixedUpdate() {
-        if (!isBeingControlled && IsGrounded()) {
+        if (!isBeingControlled && IsGrounded() && !isHeadBanging) {
             MoveHorizontal(directionModifier);
             float y = transform.position.y - 1f;
             float x = transform.position.x + (1f * directionModifier);
@@ -73,17 +85,28 @@ public class VillagerController : AbstractController {
     }
 
     void OnTriggerEnter2D(Collider2D c) {
+
+        // Reached Lab
         if (c.tag == "Victory") {
             onReachedVictoryPoint();
-        }
+        } 
 
-        if (c.tag == "ControlPoint" && !isBeingControlled && target != null) {
+        // Reached desired Flamer
+        else if (c.tag == "Flamer" 
+            && c.GetComponent<Flamer>().GetInstanceID() == target.GetInstanceID()) {
+            HeadBang();
+        } 
+
+        // Follow instructions to reach target Flamer
+        else if (c.tag == "ControlPoint" && !isBeingControlled && target != null) {
             ControlPoint cp = c.GetComponent<ControlPoint>();
             Vector3 velocity = cp.getInstruction(target.GetInstanceID());
             if (velocity != Vector3.zero) {
                 rb.velocity = velocity;
             }
-        }
+        } 
+
+
     }
 
     private void onReachedVictoryPoint() {
@@ -107,6 +130,21 @@ public class VillagerController : AbstractController {
         return null;
     }
 
+    private void HeadBang(){
+        if (!isHeadBanging) {
+            isHeadBanging = true; // in case you didnt come from update
+            Stop();
+        }
+
+        temprature += incrementTemperature;
+
+        // burn
+        if (temprature >= TEMPERATURE_LIMIT) {
+            gm.VillagerDied();
+            gameObject.SetActive(false);
+        }
+
+    }
 
 }
 

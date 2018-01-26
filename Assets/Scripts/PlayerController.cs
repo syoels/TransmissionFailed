@@ -52,7 +52,7 @@ public class PlayerController : AbstractController {
             if (isControlling && (transform.position - villager.transform.position).magnitude <= controlRadius) {
                 villager.IsBeingControlled = true;
                 villager.ExecuteCommand(c);
-            } else {
+            } else if (villager.IsBeingControlled) {
                 villager.IsBeingControlled = false;
             }
         }
