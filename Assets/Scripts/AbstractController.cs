@@ -54,17 +54,10 @@ public abstract class AbstractController : MonoBehaviour
         if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
 			rb.AddForce(new Vector2(0f, jumpForce));
 		}
-        Debug.Log(rb.velocity); 
 	}
         
 	protected void MoveHorizontal(int direction) {
-//		Vector2 movement = Vector2.zero;
-//		movement.x = (transform.right*Time.deltaTime*moveSpeed*direction).x;
-//		movement += (Vector2)(transform.position);
-//		rb.MovePosition(movement);
-//		rb.AddForce(new Vector2(moveSpeed * direction,0f));
 		rb.velocity = new Vector2 (moveSpeed * direction, rb.velocity.y);
-		//transform.position += transform.right * moveSpeed * Time.deltaTime * direction;
 		sr.flipX = direction == RIGHT_DIRECTION;
 	}
 

@@ -49,5 +49,8 @@ public class VillagerController : AbstractController {
 
     private void onReachedVictoryPoint(){
         gm.VillagerSaved();
+        this.enabled = false;
     }
+
+
 }
