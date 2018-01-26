@@ -7,7 +7,7 @@ public class VillagerController : AbstractController {
 	int temprature = 0;
 	bool isBeingControlled = false;
 
-	public override int moveSpeed { get { return 1; }}
+	public override float moveSpeed { get { return 2f; }}
 	public override float jumpForce { get { return 140f; }} 
 
 	// Update is called once per frame
@@ -33,6 +33,9 @@ public class VillagerController : AbstractController {
 				break;
 			case Command.UP:
 				HandleJumpInput ();
+				break;
+			case Command.STOP:
+				Stop ();
 				break;
 			}
 		}
