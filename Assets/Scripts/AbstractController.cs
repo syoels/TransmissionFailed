@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public abstract class AbstractController : MonoBehaviour
 {
 	public enum Command {
@@ -15,7 +16,8 @@ public abstract class AbstractController : MonoBehaviour
 	protected const int LEFT_DIRECTION = -1;
 
 	public abstract float moveSpeed { get; }
-	public Rigidbody2D rb; 
+	public Rigidbody2D rb;
+	public SpriteRenderer sr;
 
 	// Jump
 	private float TOUCH_GROUND_THRESHOLD = 1f;
@@ -37,6 +39,7 @@ public abstract class AbstractController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D> ();
         gm = FindObjectOfType<GameManager>();
+		sr = GetComponent<SpriteRenderer> ();
 	}
 
 	void FixedUpdate()
@@ -68,6 +71,7 @@ public abstract class AbstractController : MonoBehaviour
 //		rb.AddForce(new Vector2(moveSpeed * direction,0f));
 		rb.velocity = new Vector2 (moveSpeed * direction, rb.velocity.y);
 		//transform.position += transform.right * moveSpeed * Time.deltaTime * direction;
+		sr.flipX = direction == RIGHT_DIRECTION;
 	}
 
 	protected void Stop() {
