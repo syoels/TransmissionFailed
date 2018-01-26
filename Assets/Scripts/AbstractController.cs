@@ -36,7 +36,7 @@ public abstract class AbstractController : MonoBehaviour
     protected GameManager gm; 
 
 	// Use this for initialization
-	void Start ()
+	protected virtual void Start ()
 	{
 		rb = GetComponent<Rigidbody2D> ();
         gm = FindObjectOfType<GameManager>();
