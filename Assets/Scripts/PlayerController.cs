@@ -9,6 +9,7 @@ public class PlayerController : AbstractController {
 
 	public override float moveSpeed { get { return 2f; }}
 	public override float jumpForce { get { return 180f; }} 
+    private bool isControlling = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,6 +22,8 @@ public class PlayerController : AbstractController {
 
     private void HandleMovement(){
 		bool isMovingHorizontally = false;
+
+        isControlling = Input.GetKey(KeyCode.LeftControl);
 
         if (Input.GetKey(LEFT)) {
 			MoveHorizontal(LEFT_DIRECTION);
@@ -46,10 +49,14 @@ public class PlayerController : AbstractController {
     private void CommandAllVillagers(Command c){
         VillagerController[] villagers = FindObjectsOfType<VillagerController>();
         foreach (VillagerController villager in villagers) {
-            if ((transform.position - villager.transform.position).magnitude <= controlRadius) {
+            if (isControlling && (transform.position - villager.transform.position).magnitude <= controlRadius) {
+                villager.IsBeingControlled = true;
                 villager.ExecuteCommand(c);
+            } else {
+                villager.IsBeingControlled = false;
             }
         }
+            
         
     }
 
