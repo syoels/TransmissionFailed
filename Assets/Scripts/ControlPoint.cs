@@ -10,7 +10,7 @@ public class ControlPoint : MonoBehaviour {
         public Flamer target;
         public  Vector3 velocity;
     }
-    public Instruction[] mapping;
+    public Instruction[] mapping; 
 
     private Dictionary<int, Vector3> innerMapping = new Dictionary<int, Vector3>();
 
@@ -30,7 +30,7 @@ public class ControlPoint : MonoBehaviour {
         if(innerMapping.ContainsKey(instanceID)){
             return innerMapping[instanceID];
         } else {
-            return null;
+            return Vector3.zero;
         }
     }
 }
