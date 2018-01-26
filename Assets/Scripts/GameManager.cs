@@ -5,12 +5,12 @@ using UnityEngine;
 //TODO: 
 public class GameManager : MonoBehaviour {
 
-    [SerializeField] int totalVillagers; 
-    [SerializeField] int livingVillagers; 
-    [SerializeField] int savedVillagers; 
+    [SerializeField] private int totalVillagers; 
+    [SerializeField] private int livingVillagers; 
+    [SerializeField] private int savedVillagers; 
     [Range(0f, 100f)]
     public float villagersToSavePercent = 75f;
-    [SerializeField] float percentAlive = 100f;
+    [SerializeField] private float percentAlive = 100f;
 
 	// Use this for initialization
 	void Start () {
