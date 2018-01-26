@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519893323904924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.66, y: 5.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454278323260454}
@@ -139,14 +139,14 @@ MonoBehaviour:
   rb: {fileID: 0}
   sr: {fileID: 0}
   animator: {fileID: 0}
-  MAX_VELOCITY: 4
+  MAX_VELOCITY: 6
   RIGHT: 275
   LEFT: 276
   UP: 273
   CONTROL: 306
   temprature: 0
-  TEMPERATURE_LIMIT: 1000
-  chanceToChangeFlamer: 45
+  TEMPERATURE_LIMIT: 25
+  chanceToChangeFlamer: 5
   isHeadBanging: 0
   target: {fileID: 0}
   directionModifier: 1
