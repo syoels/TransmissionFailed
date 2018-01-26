@@ -22,7 +22,7 @@ public class VillagerController : AbstractController {
 
     public override float moveSpeed { get { return 2f; } }
 
-    public override float jumpForce { get { return 180f; } }
+    public override float jumpForce { get { return 140f; } }
 
     public bool IsBeingControlled {
         set { 

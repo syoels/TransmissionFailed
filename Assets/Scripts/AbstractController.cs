@@ -24,7 +24,7 @@ public abstract class AbstractController : MonoBehaviour
     int animation_isWalking; 
 
 	// Jump
-    public float MAX_VELOCITY = 7f;
+    public float MAX_VELOCITY = 8f;
 	private float TOUCH_GROUND_THRESHOLD = 1f;
 	public abstract float jumpForce { get; }
 	private bool grounded = false;
@@ -56,9 +56,7 @@ public abstract class AbstractController : MonoBehaviour
 	{
 	}
 
-	protected void HandleJumpInput(){
-		float downY = transform.position.y - TOUCH_GROUND_THRESHOLD;
-		Vector3 endGroundCheck = new Vector3(transform.position.x, downY, transform.position.z);
+	protected void HandleJumpInput() {
 		grounded = IsGrounded ();
         if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
             animator.SetBool(animation_isWalking, false);

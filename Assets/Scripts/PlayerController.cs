@@ -8,7 +8,7 @@ public class PlayerController : AbstractController {
     public float controlRadius = 10f;
 
 	public override float moveSpeed { get { return 2f; }}
-	public override float jumpForce { get { return 180f; }} 
+	public override float jumpForce { get { return 140f; }} 
     private bool isControlling = false;
 	
 	// Update is called once per frame

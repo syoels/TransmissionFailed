@@ -139,7 +139,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   sr: {fileID: 0}
   animator: {fileID: 0}
-  MAX_VELOCITY: 4
+  MAX_VELOCITY: 6
   RIGHT: 275
   LEFT: 276
   UP: 273
