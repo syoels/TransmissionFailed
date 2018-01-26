@@ -8,6 +8,8 @@ public class VillagerController : AbstractController {
     public float temprature = 0f;
     public float TEMPERATURE_LIMIT = 10f; 
     private float incrementTemperature = 0.05f;
+    [Range(0f, 100f)]
+    public float chanceToChangeFlamer = 0.02f;
 
     // Mind control
     bool isBeingControlled = false;
@@ -39,7 +41,7 @@ public class VillagerController : AbstractController {
     protected override void Start() {
         Debug.Log("starting");
         base.Start();
-        chooseNewTarget();
+        ChooseNewTarget();
     }
 
     // Update is called once per frame
@@ -47,7 +49,14 @@ public class VillagerController : AbstractController {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
 
         if (isHeadBanging) { //decided in set isBeingControlled
-            HeadBang();
+            float rnd = Random.Range(0f, 100f); 
+            if (rnd <= chanceToChangeFlamer) {
+                isHeadBanging = false;
+                ChooseNewTarget();
+            } else {
+                HeadBang();
+            }
+
         }
     } 
 
@@ -88,7 +97,7 @@ public class VillagerController : AbstractController {
 
         // Reached Lab
         if (c.tag == "Victory") {
-            onReachedVictoryPoint();
+            OnReachedVictoryPoint();
         } 
 
         // Reached desired Flamer
@@ -104,22 +113,20 @@ public class VillagerController : AbstractController {
             if (velocity != Vector3.zero) {
                 rb.velocity = velocity;
             }
-        } 
-
-
+        }
     }
 
-    private void onReachedVictoryPoint() {
+    private void OnReachedVictoryPoint() {
         gm.VillagerSaved();
         this.enabled = false;
     }
 
     private void BackToSelfControl() {
-        chooseNewTarget();
+        ChooseNewTarget();
     }
 
 
-    private Flamer chooseNewTarget() {
+    private Flamer ChooseNewTarget() {
         Flamer[] flamers = FindObjectsOfType<Flamer>();
         if (flamers.Length > 0) {
             //TODO: make this weighted by distance. 
