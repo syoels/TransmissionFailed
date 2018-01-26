@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Villager
   - Victory
+  - ControlPoint
   layers:
   - Default
   - TransparentFX
