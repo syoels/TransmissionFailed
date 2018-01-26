@@ -50,10 +50,17 @@ public abstract class AbstractController : MonoBehaviour
 	protected void HandleJumpInput(){
 		float downY = transform.position.y - TOUCH_GROUND_THRESHOLD;
 		Vector3 endGroundCheck = new Vector3(transform.position.x, downY, transform.position.z);
-		grounded = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
+		grounded = IsGrounded ();
         if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
 			rb.AddForce(new Vector2(0f, jumpForce));
 		}
+	}
+
+	protected bool IsGrounded() {
+		float downY = transform.position.y - TOUCH_GROUND_THRESHOLD;
+		Vector3 endGroundCheck = new Vector3(transform.position.x, downY, transform.position.z);
+		grounded = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
+		return grounded;
 	}
         
 	protected void MoveHorizontal(int direction) {

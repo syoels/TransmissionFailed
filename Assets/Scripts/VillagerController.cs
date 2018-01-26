@@ -9,10 +9,11 @@ public class VillagerController : AbstractController {
     private bool prevIsBeingControlled = false;
     [SerializeField]
     private Flamer target;
+	public int directionModifier = LEFT_DIRECTION;
 
     public override float moveSpeed { get { return 2f; } }
 
-    public override float jumpForce { get { return 140f; } }
+    public override float jumpForce { get { return 180f; } }
 
     protected override void Start() {
         Debug.Log("starting");
@@ -25,14 +26,22 @@ public class VillagerController : AbstractController {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
         prevIsBeingControlled = isBeingControlled;
         isBeingControlled = Input.GetKey(KeyCode.LeftControl);
-        if (prevIsBeingControlled && isBeingControlled) {
-//            BackToSelfControl();
+        if (prevIsBeingControlled && !isBeingControlled) {
+			BackToSelfControl();
         }
     }
 
     void FixedUpdate() {
-        if (!isBeingControlled) {
-            //MoveHorizontal (RIGHT_DIRECTION);
+		if (!isBeingControlled && IsGrounded()) {
+			MoveHorizontal (directionModifier);
+			float y = transform.position.y - 1f;
+			float x = transform.position.x  + (1f * directionModifier);
+			Vector3 endGroundCheck = new Vector3(x, y, transform.position.z);
+			Debug.DrawLine (transform.position, endGroundCheck, Color.red);
+			bool nearEdge = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
+			if (!nearEdge) {
+				directionModifier *= -1;
+			}
         }
     }
 
@@ -59,6 +68,14 @@ public class VillagerController : AbstractController {
         if (c.tag == "Victory") {
             onReachedVictoryPoint();
         }
+
+		if (c.tag == "ControlPoint" && !isBeingControlled && target != null) {
+			ControlPoint cp = c.GetComponent<ControlPoint> ();
+			Vector3 velocity = cp.getInstruction (target.GetInstanceID ());
+			if (velocity != Vector3.zero) {
+				rb.velocity = velocity;
+			}
+		}
     }
 
     private void onReachedVictoryPoint() {
