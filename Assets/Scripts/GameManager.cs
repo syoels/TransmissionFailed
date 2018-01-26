@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         totalVillagers = FindObjectsOfType<VillagerController>().Length;
         livingVillagers = totalVillagers;
         savedVillagers = 0;
-
+		UpdateUIText ();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour {
 
     public void VillagerDied(){
         SetNotificationText("Another Villager Burned Himself To Death!!!\nHURRY UP!");
-        livingVillagers--;
+		livingVillagers--;
+		UpdateUIText ();
         percentAlive = ((float)livingVillagers / totalVillagers) * 100f; 
         if (livingVillagers <= villagersToSavePercent) {
             GameOver();
@@ -44,7 +45,8 @@ public class GameManager : MonoBehaviour {
 
     public void VillagerSaved(){
         SetNotificationText("You Saved a Villager!\nRock On!!");
-        savedVillagers++; 
+		savedVillagers++; 
+		UpdateUIText ();
         if (savedVillagers == livingVillagers) {
             GameWon();
         }
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour {
         SetNotificationText("You Won! Woo hoo!");
     }
 
-    private void updateUIText(){
+    private void UpdateUIText(){
         villagersLeftNotification.text = "Villagers Left: " + livingVillagers + " / " + totalVillagers;
         villagersSaved.text = "Villagers Saved: " + savedVillagers; 
     }
