@@ -127,6 +127,7 @@ public class VillagerController : AbstractController {
 
 
     private Flamer ChooseNewTarget() {
+        Debug.Log("Choosing new target...");
         Flamer[] flamers = FindObjectsOfType<Flamer>();
         if (flamers.Length > 0) {
             //TODO: make this weighted by distance. 
