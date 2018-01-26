@@ -37,4 +37,14 @@ public class VillagerController : AbstractController {
 			}
 		}
 	}
+
+    void OnTriggerEnter2D(Collider2D c){
+        if (c.tag == "Victory") {
+            onReachedVictoryPoint();
+        }
+    }
+
+    private void onReachedVictoryPoint(){
+        gm.VillagerSaved();
+    }
 }

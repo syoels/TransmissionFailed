@@ -27,10 +27,15 @@ public abstract class AbstractController : MonoBehaviour
 	public KeyCode LEFT = KeyCode.LeftArrow; 
 	public KeyCode UP = KeyCode.UpArrow; 
 	public KeyCode CONTROL = KeyCode.LeftControl; 
+
+
+    protected GameManager gm; 
+
 	// Use this for initialization
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D> ();
+        gm = FindObjectOfType<GameManager>();
 	}
 
 	void FixedUpdate()

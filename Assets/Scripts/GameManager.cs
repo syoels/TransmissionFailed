@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: 
 public class GameManager : MonoBehaviour {
 
-    private int totalVillagers; 
-    private int livingVillagers; 
-    private int savedVillagers; 
+    [SerializeField] int totalVillagers; 
+    [SerializeField] int livingVillagers; 
+    [SerializeField] int savedVillagers; 
     [Range(0f, 100f)]
     public float villagersToSavePercent = 75f;
     [SerializeField] float percentAlive = 100f;
