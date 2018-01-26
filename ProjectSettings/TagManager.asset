@@ -46,11 +46,11 @@ TagManager:
   - name: BackObjects
     uniqueID: 2450959769
     locked: 0
-  - name: FrontObjects
-    uniqueID: 1793484389
-    locked: 0
   - name: Character
     uniqueID: 2692371963
+    locked: 0
+  - name: FrontObjects
+    uniqueID: 1793484389
     locked: 0
   - name: FrontArt
     uniqueID: 2322471927

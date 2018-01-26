@@ -27,4 +27,9 @@ public class VillagerMovement : MonoBehaviour {
 		movement.x = (transform.right*Time.deltaTime*moveSpeed).x;
 		movement += (Vector2)(transform.position);
 		rb2d.MovePosition(movement);	}
+
+    void OnTriggerEnter2D(Collider2D other){
+        Debug.Log("collided with");
+        Debug.Log(other);
+    }
 }
