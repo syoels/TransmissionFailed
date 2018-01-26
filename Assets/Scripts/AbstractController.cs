@@ -20,6 +20,7 @@ public abstract class AbstractController : MonoBehaviour
 	public SpriteRenderer sr;
 
 	// Jump
+    public float MAX_VELOCITY = 7f;
 	private float TOUCH_GROUND_THRESHOLD = 1f;
 	public abstract float jumpForce { get; }
 	private bool jump = false;
@@ -50,19 +51,12 @@ public abstract class AbstractController : MonoBehaviour
 		float downY = transform.position.y - TOUCH_GROUND_THRESHOLD;
 		Vector3 endGroundCheck = new Vector3(transform.position.x, downY, transform.position.z);
 		grounded = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
-		if (grounded) {
+        if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
 			rb.AddForce(new Vector2(0f, jumpForce));
 		}
+        Debug.Log(rb.velocity); 
 	}
-
-	protected void AttemptJump() {
-		if (jump) {
-			rb.AddForce(new Vector2(0f, jumpForce));
-//			transform.position += transform.up * Time.deltaTime * jumpForce;
-			jump = false;
-		}
-	}
-
+        
 	protected void MoveHorizontal(int direction) {
 //		Vector2 movement = Vector2.zero;
 //		movement.x = (transform.right*Time.deltaTime*moveSpeed*direction).x;
