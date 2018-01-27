@@ -19,6 +19,7 @@ public class VillagerController : AbstractController {
     // Animation
     int anim_isZombie_bool;
     int anim_die_trigger;
+    int anim_isHeadBanging_bool;
 
     [SerializeField]
     private Flamer target;
@@ -48,7 +49,8 @@ public class VillagerController : AbstractController {
     }
 
     // Update is called once per frame
-    void Update() {
+    protected override void Update() {
+        base.Update();
         if (isHeadBanging) { //decided in set isBeingControlled
             float rnd = Random.Range(0f, 100f); 
             if (rnd <= chanceToChangeFlamer) {
@@ -65,6 +67,7 @@ public class VillagerController : AbstractController {
         base.InitAnimationParams();
         anim_die_trigger = Animator.StringToHash("die");
         anim_isZombie_bool = Animator.StringToHash("isZombie");
+        anim_isHeadBanging_bool = Animator.StringToHash("isHeadBanging");
     }
 
     void FixedUpdate() {
@@ -132,12 +135,13 @@ public class VillagerController : AbstractController {
     }
 
     private void BackToSelfControl() {
+        animator.SetBool(anim_isZombie_bool, false);
         ChooseNewTarget();
     }
 
 
     private Flamer ChooseNewTarget() {
-        Debug.Log("Choosing new target...");
+        animator.SetBool(anim_isHeadBanging_bool, false);
         Flamer[] flamers = FindObjectsOfType<Flamer>();
         if (flamers.Length > 0) {
             //TODO: make this weighted by distance. 
@@ -151,6 +155,7 @@ public class VillagerController : AbstractController {
     private void HeadBang(){
         if (!isHeadBanging) {
             isHeadBanging = true; // in case you didnt come from update
+            animator.SetBool(anim_isHeadBanging_bool, true);
             Stop();
         }
 
@@ -158,6 +163,7 @@ public class VillagerController : AbstractController {
 
         // burn
         if (temprature >= TEMPERATURE_LIMIT) {
+            animator.SetBool(anim_isHeadBanging_bool, false);
             gm.VillagerDied();
             gameObject.SetActive(false);
         }
