@@ -168,9 +168,9 @@ public class VillagerController : AbstractController {
 
         // burn
         if (temprature >= TEMPERATURE_LIMIT) {
+            Debug.Log("Passed limit");
             animator.SetBool(anim_isHeadBanging_bool, false);
-            gm.VillagerDied();
-            gameObject.SetActive(false);
+            animator.SetTrigger(anim_die_trigger);
         }
 
     }
@@ -199,6 +199,11 @@ public class VillagerController : AbstractController {
                 }
             }
         }
+    }
+
+    public void Explode(){
+        gm.VillagerDied();
+        gameObject.SetActive(false);
     }
 
 }
