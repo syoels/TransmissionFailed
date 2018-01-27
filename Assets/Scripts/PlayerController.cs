@@ -10,15 +10,24 @@ public class PlayerController : AbstractController {
 	public override float moveSpeed { get { return 3.25f; }}
 	public override float jumpForce { get { return 140f; }} 
     private bool isControlling = false;
+    private bool isControllingPrev = false;
+
+    // Audio
+    Transform sounds;
+    AudioSource soundHalo; 
+
+
+
+	
 
 	// Animation
 	int anim_control_trigger;
 
-	protected override void Start() {
-		base.Start();
-		anim_control_trigger = Animator.StringToHash ("control");
-	}
-
+    protected override void Start() {
+        base.Start();
+        initAudioSources();
+anim_control_trigger = Animator.StringToHash ("control");
+    }
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
@@ -36,6 +45,7 @@ public class PlayerController : AbstractController {
     private void HandleMovement(){
 		bool isMovingHorizontally = false;
 
+        isControllingPrev = isControlling;
         isControlling = Input.GetKey(KeyCode.LeftControl);
 		if (isControlling) {
 			animator.SetTrigger (anim_control_trigger);
@@ -60,6 +70,8 @@ public class PlayerController : AbstractController {
 			HandleJumpInput ();
 			CommandAllVillagers (Command.UP);
 		}
+
+        handleSounds();
     }
 
     private void CommandAllVillagers(Command c){
@@ -79,6 +91,17 @@ public class PlayerController : AbstractController {
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, controlRadius);
+    }
+
+    private void initAudioSources(){
+        sounds = transform.Find("Sounds");
+        soundHalo = sounds.Find("Halo").GetComponent<AudioSource>();
+    }
+
+    private void handleSounds(){
+        if (!isControllingPrev && isControlling) {
+            soundHalo.Play();
+        }
     }
 
 }
