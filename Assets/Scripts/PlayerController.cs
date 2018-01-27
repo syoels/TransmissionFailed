@@ -19,12 +19,17 @@ public class PlayerController : AbstractController {
 	// Animation
 	int anim_control_trigger;
 	int anim_control_release_trigger;
+	public Animator haloAnimator;
+	int anim_halo_in_control;
 
     protected override void Start() {
         base.Start();
         initAudioSources();
 		anim_control_trigger = Animator.StringToHash ("control");
 		anim_control_release_trigger = Animator.StringToHash ("controlRelease");
+
+		haloAnimator = transform.Find ("Halo").GetComponent<Animator> ();
+		anim_halo_in_control = Animator.StringToHash ("inControl"); 
     }
 	// Update is called once per frame
 	protected override void Update () {
@@ -50,6 +55,7 @@ public class PlayerController : AbstractController {
 		} else {
 			animator.SetTrigger (anim_control_release_trigger);
 		}
+		haloAnimator.SetBool (anim_halo_in_control, isControlling);
 
         if (Input.GetKey(LEFT)) {
 			MoveHorizontal(LEFT_DIRECTION);
