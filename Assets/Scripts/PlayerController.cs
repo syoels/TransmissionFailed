@@ -11,6 +11,14 @@ public class PlayerController : AbstractController {
 	public override float jumpForce { get { return 140f; }} 
     private bool isControlling = false;
 
+	// Animation
+	int anim_control_trigger;
+
+	protected override void Start() {
+		base.Start();
+		anim_control_trigger = Animator.StringToHash ("control");
+	}
+
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
@@ -29,6 +37,9 @@ public class PlayerController : AbstractController {
 		bool isMovingHorizontally = false;
 
         isControlling = Input.GetKey(KeyCode.LeftControl);
+		if (isControlling) {
+			animator.SetTrigger (anim_control_trigger);
+		}
 
         if (Input.GetKey(LEFT)) {
 			MoveHorizontal(LEFT_DIRECTION);
