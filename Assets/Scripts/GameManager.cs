@@ -24,9 +24,16 @@ public class GameManager : MonoBehaviour {
     private Animator labAnimator;
     private int labAnim_save_trigger;
 
+	public Canvas canvas;
+	private Animator canvasAnimator;
+	private int anim_game_over_trigger;
+	public GameObject gameOver;
 
 	// Use this for initialization
 	void Start () {
+		canvasAnimator = canvas.GetComponent<Animator> ();
+		anim_game_over_trigger = Animator.StringToHash ("gameOver");
+
         labAnimator = lab.GetComponent<Animator>();
         labAnim_save_trigger = Animator.StringToHash("VillagerSaved");
         totalVillagers = FindObjectsOfType<VillagerController>().Length;
@@ -61,8 +68,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private void GameOver(){
+		gameOver.SetActive (true);
         Debug.Log("Game over.. :(");
         SetNotificationText("Game Over.. boo hoo :(");
+		canvasAnimator.SetTrigger (anim_game_over_trigger);
     }
 
     private void GameWon(){
