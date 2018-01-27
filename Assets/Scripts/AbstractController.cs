@@ -21,7 +21,11 @@ public abstract class AbstractController : MonoBehaviour
 
     // Animation
     public Animator animator;
-    int animation_isWalking; 
+    int anim_isWalking_bool; 
+    int anim_ySpeed_float; 
+    int anim_jump_trigger; 
+    int anim_die_trigger;
+
 
 	// Jump
     public float MAX_VELOCITY = 8f;
@@ -48,8 +52,11 @@ public abstract class AbstractController : MonoBehaviour
         InitAnimationParams();
 	}
 
-    protected void InitAnimationParams(){
-        animation_isWalking = Animator.StringToHash("isWalking");
+    protected virtual void InitAnimationParams(){
+        anim_isWalking_bool = Animator.StringToHash("isWalking");
+        anim_ySpeed_float = Animator.StringToHash("Y_Speed"); 
+        anim_jump_trigger = Animator.StringToHash("jump");
+        anim_die_trigger = Animator.StringToHash("die");
     }
 
 	void FixedUpdate()
@@ -59,7 +66,7 @@ public abstract class AbstractController : MonoBehaviour
 	protected void HandleJumpInput() {
 		grounded = IsGrounded ();
         if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
-            animator.SetBool(animation_isWalking, false);
+            animator.SetBool(anim_isWalking_bool, false);
 			rb.AddForce(new Vector2(0f, jumpForce));
 		}
 	}
@@ -69,20 +76,20 @@ public abstract class AbstractController : MonoBehaviour
 		Vector3 endGroundCheck = new Vector3(transform.position.x, downY, transform.position.z);
 		grounded = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
         if (!grounded) {
-            animator.SetBool(animation_isWalking, false);
+            animator.SetBool(anim_isWalking_bool, false);
         }
 		return grounded;
 	}
         
 	protected void MoveHorizontal(int direction) {
-        animator.SetBool(animation_isWalking, true);
+        animator.SetBool(anim_isWalking_bool, true);
 		rb.velocity = new Vector2 (moveSpeed * direction, rb.velocity.y);
 		sr.flipX = direction == RIGHT_DIRECTION;
 	}
 
 	protected void Stop() {
 		rb.velocity = new Vector2 (0f, rb.velocity.y);
-        animator.SetBool(animation_isWalking, false);
+        animator.SetBool(anim_isWalking_bool, false);
 	}
 
 }

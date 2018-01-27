@@ -16,6 +16,9 @@ public class VillagerController : AbstractController {
     private bool prevIsBeingControlled = false; 
     public bool isHeadBanging = false;
 
+    // Animation
+    int anim_isZombie_bool;
+
     [SerializeField]
     private Flamer target;
     public int directionModifier = LEFT_DIRECTION;
@@ -39,7 +42,6 @@ public class VillagerController : AbstractController {
     }
 
     protected override void Start() {
-        Debug.Log("starting");
         base.Start();
         ChooseNewTarget();
     }
@@ -57,6 +59,11 @@ public class VillagerController : AbstractController {
 
         }
     } 
+
+    protected virtual void InitAnimationParams(){
+        base.InitAnimationParams();
+        anim_isZombie_bool = Animator.StringToHash("isZombie");
+    }
 
     void FixedUpdate() {
         if (!isBeingControlled && IsGrounded() && !isHeadBanging) {
