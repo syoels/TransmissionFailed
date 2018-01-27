@@ -51,6 +51,7 @@ public class VillagerController : AbstractController {
     // Update is called once per frame
     protected override void Update() {
         base.Update();
+        animator.SetBool(anim_isZombie_bool, isBeingControlled);
         if (isHeadBanging) { //decided in set isBeingControlled
             float rnd = Random.Range(0f, 100f); 
             if (rnd <= chanceToChangeFlamer) {
