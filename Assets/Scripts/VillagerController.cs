@@ -10,6 +10,9 @@ public class VillagerController : AbstractController {
     private float incrementTemperature = 0.05f;
     [Range(0f, 100f)]
     public float chanceToChangeFlamer = 0.02f;
+    public Sprite[] thermostatImages; 
+    private SpriteRenderer thermostatSr;
+    public List<float> thermostatLevels = new List<float>();
 
     // Mind control
     bool isBeingControlled = false;
@@ -46,11 +49,13 @@ public class VillagerController : AbstractController {
     protected override void Start() {
         base.Start();
         ChooseNewTarget();
+        InitThermostat();
     }
 
     // Update is called once per frame
     protected override void Update() {
         base.Update();
+        UpdateThermostatLevels();
         animator.SetBool(anim_isZombie_bool, isBeingControlled);
         if (isHeadBanging) { //decided in set isBeingControlled
             float rnd = Random.Range(0f, 100f); 
@@ -168,6 +173,32 @@ public class VillagerController : AbstractController {
             gameObject.SetActive(false);
         }
 
+    }
+
+    private void InitThermostat(){
+        thermostatSr = transform.Find("Thermostat").GetComponent<SpriteRenderer>();
+        int levels = thermostatImages.Length; 
+        float level = TEMPERATURE_LIMIT / levels;
+        for (int i = 0; i < levels; i++) {
+            thermostatLevels.Add(level * i);
+        }
+    }
+
+    private void UpdateThermostatLevels(){
+        float[] levels = thermostatLevels.ToArray();
+        for (int i = 0; i < levels.Length; i++) {
+            if (i == thermostatLevels.Count - 1) {
+                if (temprature >= levels[i]) {
+                    thermostatSr.sprite = thermostatImages[i];
+                    return;
+                }
+            } else {
+                if (temprature >= levels[i] && temprature < levels[i + 1]) {
+                    thermostatSr.sprite = thermostatImages[i];
+                    return;
+                }
+            }
+        }
     }
 
 }
