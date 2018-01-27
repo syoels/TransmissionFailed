@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000124575419492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.97, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4809090764054444}
@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519893323904924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.66, y: 5.51, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454278323260454}
@@ -105,8 +105,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1770773, y: -0.36548567}
-  m_Size: {x: 0.70017433, y: 0.70017433}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.75, y: 0.75}
   m_Direction: 0
 --- !u!95 &95907946430087698
 Animator:
@@ -145,8 +145,8 @@ MonoBehaviour:
   UP: 273
   CONTROL: 306
   temprature: 0
-  TEMPERATURE_LIMIT: 25
-  chanceToChangeFlamer: 5
+  TEMPERATURE_LIMIT: 10
+  chanceToChangeFlamer: 1
   isHeadBanging: 0
   target: {fileID: 0}
   directionModifier: 1
