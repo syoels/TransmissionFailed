@@ -77,7 +77,6 @@ public class VillagerController : AbstractController {
             float y = transform.position.y - 1f;
             float x = transform.position.x + (1f * directionModifier);
             Vector3 endGroundCheck = new Vector3(x, y, transform.position.z);
-            Debug.DrawLine(transform.position, endGroundCheck, Color.red);
             bool nearEdge = Physics2D.Linecast(transform.position, endGroundCheck, 1 << LayerMask.NameToLayer("Ground"));
             if (!nearEdge) {
                 directionModifier *= -1;
