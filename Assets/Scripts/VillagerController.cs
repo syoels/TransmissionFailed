@@ -18,6 +18,7 @@ public class VillagerController : AbstractController {
 
     // Animation
     int anim_isZombie_bool;
+    int anim_die_trigger;
 
     [SerializeField]
     private Flamer target;
@@ -62,6 +63,7 @@ public class VillagerController : AbstractController {
 
     protected virtual void InitAnimationParams(){
         base.InitAnimationParams();
+        anim_die_trigger = Animator.StringToHash("die");
         anim_isZombie_bool = Animator.StringToHash("isZombie");
     }
 
