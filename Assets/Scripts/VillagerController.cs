@@ -61,7 +61,7 @@ public class VillagerController : AbstractController {
         }
     } 
 
-    protected virtual void InitAnimationParams(){
+    protected override void InitAnimationParams(){
         base.InitAnimationParams();
         anim_die_trigger = Animator.StringToHash("die");
         anim_isZombie_bool = Animator.StringToHash("isZombie");
@@ -119,6 +119,9 @@ public class VillagerController : AbstractController {
             Vector2 velocity = cp.getInstruction(target.GetInstanceID());
             if (velocity != Vector2.zero) {
                 rb.velocity = velocity;
+                if (velocity.y >= 0) {
+                    animator.SetTrigger(anim_jump_trigger);
+                }
             }
         }
     }

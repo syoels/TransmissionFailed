@@ -21,11 +21,10 @@ public abstract class AbstractController : MonoBehaviour
 
     // Animation
     public Animator animator;
-    int anim_isWalking_bool; 
-    int anim_ySpeed_float; 
-    int anim_jump_trigger; 
-    int anim_die_trigger;
-
+    protected int anim_isWalking_bool; 
+    protected int anim_ySpeed_float; 
+    protected int anim_jump_trigger; 
+    protected int anim_isGrounded_bool;
 
 	// Jump
     public float MAX_VELOCITY = 8f;
@@ -56,7 +55,12 @@ public abstract class AbstractController : MonoBehaviour
         anim_isWalking_bool = Animator.StringToHash("isWalking");
         anim_ySpeed_float = Animator.StringToHash("Y_Speed"); 
         anim_jump_trigger = Animator.StringToHash("jump");
-        anim_die_trigger = Animator.StringToHash("die");
+        anim_isGrounded_bool = Animator.StringToHash("isGrounded");
+    }
+
+    protected virtual void Update(){
+        animator.SetFloat(anim_ySpeed_float, rb.velocity.y);
+        animator.SetBool(anim_isGrounded_bool, grounded);
     }
 
 	void FixedUpdate()
@@ -68,6 +72,7 @@ public abstract class AbstractController : MonoBehaviour
         if (grounded && rb.velocity.magnitude <= MAX_VELOCITY) {
             animator.SetBool(anim_isWalking_bool, false);
 			rb.AddForce(new Vector2(0f, jumpForce));
+            animator.SetTrigger(anim_jump_trigger);
 		}
 	}
 
