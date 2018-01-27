@@ -601,6 +601,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114448411182045988, guid: 4000619a4ff50744e852e3917e24c2bd,
+        type: 2}
+      propertyPath: chanceToChangeFlamer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4000619a4ff50744e852e3917e24c2bd, type: 2}
   m_IsPrefabParent: 0
@@ -2643,6 +2648,11 @@ Prefab:
     - target: {fileID: 1519893323904924, guid: 4000619a4ff50744e852e3917e24c2bd, type: 2}
       propertyPath: m_Name
       value: Villager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448411182045988, guid: 4000619a4ff50744e852e3917e24c2bd,
+        type: 2}
+      propertyPath: chanceToChangeFlamer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4000619a4ff50744e852e3917e24c2bd, type: 2}
