@@ -60,7 +60,7 @@ public abstract class AbstractController : MonoBehaviour
 
     protected virtual void Update(){
         animator.SetFloat(anim_ySpeed_float, rb.velocity.y);
-        animator.SetBool(anim_isGrounded_bool, grounded);
+		animator.SetBool(anim_isGrounded_bool, IsGrounded());
     }
 
 	void FixedUpdate()

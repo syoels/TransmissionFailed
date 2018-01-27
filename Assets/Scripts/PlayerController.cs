@@ -10,15 +10,20 @@ public class PlayerController : AbstractController {
 	public override float moveSpeed { get { return 3.25f; }}
 	public override float jumpForce { get { return 140f; }} 
     private bool isControlling = false;
-	
+
 	// Update is called once per frame
-	void Update () {
-		
+	protected override void Update () {
+		base.Update ();
 	}
 
     void FixedUpdate() {
 		HandleMovement ();
     }
+
+//	protected override void InitAnimationParams() {
+//		base.InitAnimationParams();
+//		ChooseNewTarget();
+//	}
 
     private void HandleMovement(){
 		bool isMovingHorizontally = false;
