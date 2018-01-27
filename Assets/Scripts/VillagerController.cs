@@ -116,8 +116,8 @@ public class VillagerController : AbstractController {
         } 
 
         // Reached desired Flamer
-        else if (c.tag == "Flamer" 
-            && c.GetComponent<Flamer>().GetInstanceID() == target.GetInstanceID()) {
+        else if (c.tag == "Flamer"
+                 && c.GetComponent<Flamer>().GetInstanceID() == target.GetInstanceID()) {
             HeadBang();
         } 
 
@@ -131,6 +131,9 @@ public class VillagerController : AbstractController {
                     animator.SetTrigger(anim_jump_trigger);
                 }
             }
+        } else if (c.tag == "Death") {
+            Explode();
+
         }
     }
 

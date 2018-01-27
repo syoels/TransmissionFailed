@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 
 //TODO: 
+using UnityEngine.SceneManagement;
+
+
 public class GameManager : MonoBehaviour {
 
     [SerializeField] private int totalVillagers; 
@@ -52,7 +55,7 @@ public class GameManager : MonoBehaviour {
 		livingVillagers--;
 		UpdateUIText ();
         percentAlive = ((float)livingVillagers / totalVillagers) * 100f; 
-        if (livingVillagers <= villagersToSavePercent) {
+        if (percentAlive <= villagersToSavePercent) {
             GameOver();
         }
     }
@@ -72,11 +75,13 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Game over.. :(");
         SetNotificationText("Game Over.. boo hoo :(");
 		canvasAnimator.SetTrigger (anim_game_over_trigger);
+        StartCoroutine(Replay(5f));
     }
 
     private void GameWon(){
         Debug.Log("You won!! woo hoo");
         SetNotificationText("You Won! Woo hoo!");
+        StartCoroutine(Replay(5f));
     }
 
     private void UpdateUIText(){
@@ -93,5 +98,10 @@ public class GameManager : MonoBehaviour {
     IEnumerator ResetNotification(float time){
         yield return new WaitForSeconds(time);
         notifications.text = "";
+    }
+
+    IEnumerator Replay(float time){
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene ("Intro");
     }
 }

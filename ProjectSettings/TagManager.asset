@@ -8,6 +8,7 @@ TagManager:
   - Victory
   - ControlPoint
   - Flamer
+  - Death
   layers:
   - Default
   - TransparentFX

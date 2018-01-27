@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour {
 
-//	public Button newGame;
-//    public Button next;
-//    public Button esc;
+	public Button newGame;
+    public Button next;
+    public Button esc;
 
 
     public GameObject blackPanel; 
@@ -18,12 +18,12 @@ public class Intro : MonoBehaviour {
 	void Start()
 	{
         Debug.Log("In start");
-//		Button btnNew = newGame.GetComponent<Button>();
-//        Button btnEsc = esc.GetComponent<Button>();
-//        Button btnNxt = next.GetComponent<Button>();
-//        btnNew.onClick.AddListener(ShowComics);
-//        btnEsc.onClick.AddListener(HideComics);
-//        btnNxt.onClick.AddListener(StartGame);
+		Button btnNew = newGame.GetComponent<Button>();
+        Button btnEsc = esc.GetComponent<Button>();
+        Button btnNxt = next.GetComponent<Button>();
+        btnNew.onClick.AddListener(ShowComics);
+        btnEsc.onClick.AddListener(HideComics);
+        btnNxt.onClick.AddListener(StartGame);
 	}
 
     public void ShowComics(){
