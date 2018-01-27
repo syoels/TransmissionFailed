@@ -19,9 +19,16 @@ public class GameManager : MonoBehaviour {
     public Text notifications; 
     public Text villagersSaved; 
 
+    // Lab related
+    public GameObject lab;
+    private Animator labAnimator;
+    private int labAnim_save_trigger;
+
 
 	// Use this for initialization
 	void Start () {
+        labAnimator = lab.GetComponent<Animator>();
+        labAnim_save_trigger = Animator.StringToHash("VillagerSaved");
         totalVillagers = FindObjectsOfType<VillagerController>().Length;
         livingVillagers = totalVillagers;
         savedVillagers = 0;
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void VillagerSaved(){
+        labAnimator.SetTrigger(labAnim_save_trigger);
         SetNotificationText("You Saved a Villager!\nRock On!!");
 		savedVillagers++; 
 		UpdateUIText ();
