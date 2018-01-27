@@ -16,17 +16,15 @@ public class PlayerController : AbstractController {
     Transform sounds;
     AudioSource soundHalo; 
 
-
-
-	
-
 	// Animation
 	int anim_control_trigger;
+	int anim_control_release_trigger;
 
     protected override void Start() {
         base.Start();
         initAudioSources();
-anim_control_trigger = Animator.StringToHash ("control");
+		anim_control_trigger = Animator.StringToHash ("control");
+		anim_control_release_trigger = Animator.StringToHash ("controlRelease");
     }
 	// Update is called once per frame
 	protected override void Update () {
@@ -49,6 +47,8 @@ anim_control_trigger = Animator.StringToHash ("control");
         isControlling = Input.GetKey(KeyCode.LeftControl);
 		if (isControlling) {
 			animator.SetTrigger (anim_control_trigger);
+		} else {
+			animator.SetTrigger (anim_control_release_trigger);
 		}
 
         if (Input.GetKey(LEFT)) {
