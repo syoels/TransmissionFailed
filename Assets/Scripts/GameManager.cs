@@ -10,17 +10,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    // Stats
     [SerializeField] private int totalVillagers; 
     [SerializeField] private int livingVillagers; 
     [SerializeField] private int savedVillagers; 
+    [SerializeField] private int deadVillagers; 
     [Range(0f, 100f)]
     public float villagersToSavePercent = 75f;
     [SerializeField] private float percentAlive = 100f;
-
-    public float NOTIFIACTION_TIME = 2.5f;
-    public Text villagersLeftNotification; 
-    public Text notifications; 
-    public Text villagersSaved; 
 
     // Lab related
     public GameObject lab;
@@ -30,6 +27,10 @@ public class GameManager : MonoBehaviour {
     // UI
 	public Canvas canvas;
 	private Animator canvasAnimator;
+    public float NOTIFIACTION_TIME = 2.5f;
+    public Text villagersLeftNotification; 
+    public Text notifications; 
+    public Text villagersSaved; 
 
     // Level related
 	private int anim_game_over_trigger;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour {
 
         labAnimator = lab.GetComponent<Animator>();
         labAnim_save_trigger = Animator.StringToHash("VillagerSaved");
+        deadVillagers = 0;
         totalVillagers = FindObjectsOfType<VillagerController>().Length;
         livingVillagers = totalVillagers;
         savedVillagers = 0;
@@ -59,10 +61,17 @@ public class GameManager : MonoBehaviour {
     public void VillagerDied(){
         SetNotificationText("Another Villager Burned Himself To Death!!!\nHURRY UP!");
 		livingVillagers--;
+        deadVillagers++;
 		UpdateUIText ();
         percentAlive = ((float)livingVillagers / totalVillagers) * 100f; 
         if (percentAlive <= villagersToSavePercent) {
             GameOver();
+            return;
+        }
+        // Win after a villager is dead but player still passed the required capacity
+        bool allVillagersAreGone = (deadVillagers + savedVillagers == totalVillagers);
+        if (allVillagersAreGone && percentAlive > villagersToSavePercent) {
+            GameWon();
         }
     }
 
