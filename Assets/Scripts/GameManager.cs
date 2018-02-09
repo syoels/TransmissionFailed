@@ -27,10 +27,14 @@ public class GameManager : MonoBehaviour {
     private Animator labAnimator;
     private int labAnim_save_trigger;
 
+    // UI
 	public Canvas canvas;
 	private Animator canvasAnimator;
+
+    // Level related
 	private int anim_game_over_trigger;
 	public GameObject gameOver;
+    public SceneField nextLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour {
     private void GameWon(){
         Debug.Log("You won!! woo hoo");
         SetNotificationText("You Won! Woo hoo!");
-        StartCoroutine(Replay(5f));
+        StartCoroutine(LoadNextLevel(5f));
     }
 
     private void UpdateUIText(){
@@ -104,4 +108,15 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene ("Intro");
     }
+
+    IEnumerator LoadNextLevel(float time){
+        yield return new WaitForSeconds(time);
+        if (this.nextLevel != null) {
+            SceneManager.LoadScene(this.nextLevel);   
+        } else {
+            SceneManager.LoadScene("Intro");
+        }
+    }
+
+
 }

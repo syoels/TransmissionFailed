@@ -2415,17 +2415,6 @@ Prefab:
       propertyPath: villagersToSavePercent
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
-        type: 2}
-      propertyPath: nextLevel.m_SceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 51a442d43fd62d54b8441a5889d2c0a3,
-        type: 3}
-    - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
-        type: 2}
-      propertyPath: nextLevel.m_SceneName
-      value: Level_2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cae06df1efaf484786fe91a3e1c9b8f, type: 2}
   m_IsPrefabParent: 0
@@ -2707,11 +2696,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4403420602960410, guid: a2c28473fbd84e74180d89fab851ec47, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.34
+      value: -10.21
       objectReference: {fileID: 0}
     - target: {fileID: 4403420602960410, guid: a2c28473fbd84e74180d89fab851ec47, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.08
+      value: 6.35
       objectReference: {fileID: 0}
     - target: {fileID: 4403420602960410, guid: a2c28473fbd84e74180d89fab851ec47, type: 2}
       propertyPath: m_LocalPosition.z
