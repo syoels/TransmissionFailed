@@ -2363,7 +2363,8 @@ Prefab:
         type: 2}
       propertyPath: nextLevel.m_SceneAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 102900000, guid: 94454794a40613a4691f274e8f7c6e6b,
+        type: 3}
     - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
         type: 2}
       propertyPath: nextLevel.m_SceneName
