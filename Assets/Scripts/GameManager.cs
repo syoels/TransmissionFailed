@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
     private int labAnim_save_trigger;
 
     // UI
+    //TODO: move all UI functions to UIManager
 	public Canvas canvas;
 	private Animator canvasAnimator;
     public float NOTIFIACTION_TIME = 2.5f;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
     // Level related
 	private int anim_game_over_trigger;
+    private int anim_start_level_trigger;
 	public GameObject gameOver;
     public SceneField nextLevel;
 
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		canvasAnimator = canvas.GetComponent<Animator> ();
 		anim_game_over_trigger = Animator.StringToHash ("gameOver");
+        anim_start_level_trigger = Animator.StringToHash ("startLevel");
+        canvasAnimator.SetTrigger(anim_start_level_trigger);
 
         labAnimator = lab.GetComponent<Animator>();
         labAnim_save_trigger = Animator.StringToHash("VillagerSaved");
@@ -100,6 +104,7 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(LoadNextLevel(5f));
     }
 
+    //TODO: move all UI functions to UIManager
     private void UpdateUIText(){
         villagersLeftNotification.text = "Villagers Left: " + livingVillagers + " / " + totalVillagers;
         villagersSaved.text = "Villagers Saved: " + savedVillagers; 
