@@ -1585,11 +1585,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 237013811}
   m_Script: {fileID: 11500000, guid: 48ca6a4707a83d74a89f849f0c07287f, type: 3}
---- !u!1 &1196625531 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1644696190884052, guid: 0cea2be46305acc4ca987a68dee405c8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1025581688}
 --- !u!1001 &1241711596
 Prefab:
   m_ObjectHideFlags: 0
@@ -1656,6 +1651,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4618669477428224, guid: a6599dfddaece5c4389c8a3d53b0e67e,
     type: 2}
   m_PrefabInternal: {fileID: 1241711596}
+--- !u!1 &1247785272 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1713596378294998, guid: 0cea2be46305acc4ca987a68dee405c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1025581688}
 --- !u!1001 &1267698885
 Prefab:
   m_ObjectHideFlags: 0
@@ -2348,7 +2348,7 @@ Prefab:
         type: 2}
       propertyPath: gameOver
       value: 
-      objectReference: {fileID: 1196625531}
+      objectReference: {fileID: 1247785272}
     - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
         type: 2}
       propertyPath: canvas

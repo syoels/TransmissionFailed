@@ -15,9 +15,14 @@ public class UIManager : MonoBehaviour {
 	void Update () {
 		
 	}
-    void LoadLevelMarker(){
+
+    public void LoadLevelMarker(){
         if (levelMarker != null) {
             levelMarker.FadeIn();
         }
+    }
+
+    public void HideLevelMarker(){
+        levelMarker.gameObject.SetActive(false);
     }
 }

@@ -179,7 +179,6 @@ public class VillagerController : AbstractController {
 
         // burn
         if (temprature >= TEMPERATURE_LIMIT) {
-            Debug.Log("Passed limit");
             animator.SetBool(anim_isHeadBanging_bool, false);
             animator.SetTrigger(anim_die_trigger);
         }
