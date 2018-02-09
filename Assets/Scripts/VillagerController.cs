@@ -137,6 +137,14 @@ public class VillagerController : AbstractController {
         }
     }
 
+    void OnTriggerExit2D(Collider2D c) {
+        if (c.tag == "Flamer") {
+            isHeadBanging = false; // in case you didnt come from update
+            animator.SetBool(anim_isHeadBanging_bool, false);
+        }
+    }
+
+
     private void OnReachedVictoryPoint() {
         gm.VillagerSaved();
 		gameObject.SetActive(false);
