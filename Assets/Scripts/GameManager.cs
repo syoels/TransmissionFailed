@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOver;
     public SceneField nextLevel;
 
+    public CameraFollow cam;
+
 	// Use this for initialization
 	void Start () {
 		canvasAnimator = canvas.GetComponent<Animator> ();
@@ -74,12 +76,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void GameOver(){
+    public void GameOver(float timeToExitScene = 5f){
+        cam.StopFollowing();
 		gameOver.SetActive (true);
         Debug.Log("Game over.. :(");
         SetNotificationText("Game Over.. boo hoo :(");
 		canvasAnimator.SetTrigger (anim_game_over_trigger);
-        StartCoroutine(Replay(5f));
+        StartCoroutine(Replay(timeToExitScene));
     }
 
     private void GameWon(){

@@ -136,10 +136,16 @@ MonoBehaviour:
   totalVillagers: 0
   livingVillagers: 0
   savedVillagers: 0
-  villagersToSavePercent: 75
+  villagersToSavePercent: 40
   percentAlive: 100
   NOTIFIACTION_TIME: 2.5
   villagersLeftNotification: {fileID: 0}
   notifications: {fileID: 0}
   villagersSaved: {fileID: 0}
   lab: {fileID: 0}
+  canvas: {fileID: 0}
+  gameOver: {fileID: 0}
+  nextLevel:
+    m_SceneAsset: {fileID: 102900000, guid: 51a442d43fd62d54b8441a5889d2c0a3, type: 3}
+    m_SceneName: Level_2
+  cam: {fileID: 0}

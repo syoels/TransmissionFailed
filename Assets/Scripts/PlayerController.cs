@@ -94,6 +94,13 @@ public class PlayerController : AbstractController {
         
     }
 
+    void OnTriggerEnter2D(Collider2D c) {
+        if (c.tag == "Death") {
+            gm.GameOver();
+
+        }
+    }
+
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, controlRadius);
@@ -109,5 +116,6 @@ public class PlayerController : AbstractController {
             soundHalo.Play();
         }
     }
+
 
 }

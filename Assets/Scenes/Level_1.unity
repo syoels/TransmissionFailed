@@ -851,14 +851,15 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1052935665}
-    - target: {fileID: 20984310619985918, guid: fc4b153788efac64fa36b9b25d130073,
-        type: 2}
-      propertyPath: field of view
-      value: 70
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4b153788efac64fa36b9b25d130073, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &581906638 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114345465523779508, guid: fc4b153788efac64fa36b9b25d130073,
+    type: 2}
+  m_PrefabInternal: {fileID: 581906637}
+  m_Script: {fileID: 11500000, guid: a44939eb9628aaa4c800614e392e6508, type: 3}
 --- !u!1 &628772540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2427,11 @@ Prefab:
       propertyPath: nextLevel.m_SceneName
       value: Level_2
       objectReference: {fileID: 0}
+    - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 581906638}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cae06df1efaf484786fe91a3e1c9b8f, type: 2}
   m_IsPrefabParent: 0
