@@ -12,6 +12,7 @@ public class Intro : MonoBehaviour {
 
 
     public GameObject blackPanel; 
+    public SceneField nextLevel;
 
 
 
@@ -27,18 +28,20 @@ public class Intro : MonoBehaviour {
 	}
 
     public void ShowComics(){
-        Debug.Log("In ShowComics");
         blackPanel.gameObject.SetActive(true);
     }
 
     public void HideComics(){
-        Debug.Log("In HideComics");
         blackPanel.gameObject.SetActive(false);
     }
 
     public void StartGame()
     {
         Debug.Log("In StartGame");
-		SceneManager.LoadScene ("Level_1");
+        if (this.nextLevel != null) {
+            SceneManager.LoadScene(nextLevel);
+        } else {
+            SceneManager.LoadScene("Level_1_tutorial");
+        }
 	}
 }
