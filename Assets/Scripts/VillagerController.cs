@@ -139,6 +139,7 @@ public class VillagerController : AbstractController {
                 rb.velocity = velocity;
                 if (velocity.y >= 0) {
                     WaitForLand = true;
+                    directionModifier = velocity.x > 0 ? RIGHT_DIRECTION : LEFT_DIRECTION;
                     animator.SetTrigger(anim_jump_trigger);
                 }
             }
