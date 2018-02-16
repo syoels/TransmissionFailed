@@ -30,7 +30,7 @@ public abstract class AbstractController : MonoBehaviour
     public float MAX_VELOCITY = 8f;
 	private float TOUCH_GROUND_THRESHOLD = 1f;
 	public abstract float jumpForce { get; }
-	private bool grounded = false;
+	protected bool grounded = false;
 
 	// Keys
 	public KeyCode RIGHT = KeyCode.RightArrow; 

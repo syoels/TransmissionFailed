@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOver;
     public SceneField nextLevel;
 
+    // Debug Cheats :)
+    public bool cheatsEnabled = false; 
+    public Vector2 velocityToAllVillagers = new Vector2(5f, 2f);
+    public KeyCode keyToAddVelocity = KeyCode.V;
+
     public CameraFollow cam;
 
 	// Use this for initialization
@@ -59,7 +64,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (cheatsEnabled) {
+            HandleCheats();
+        }
 	}
 
     public void VillagerDied(){
@@ -133,6 +140,37 @@ public class GameManager : MonoBehaviour {
         } else {
             SceneManager.LoadScene("Intro");
         }
+    }
+
+    private void HandleCheats(){
+        if (!cheatsEnabled) {
+            Debug.Log("Cheats activated even though flag is off !");
+        }
+        VillagerController[] villagers = FindObjectsOfType<VillagerController>();
+        if (Input.GetKeyDown(keyToAddVelocity)) {
+            foreach (VillagerController vc in villagers) {
+                Rigidbody2D rb = vc.GetComponent<Rigidbody2D>();
+                Vector2 velocity = new Vector2(velocityToAllVillagers.x, velocityToAllVillagers.y);
+                velocity.x *= vc.directionModifier;
+                rb.velocity += velocity;
+            }
+        }
+        foreach (VillagerController vc in villagers) {
+            Rigidbody2D rb = vc.GetComponent<Rigidbody2D>();
+            Vector3 from = vc.transform.position;
+            Vector3 to = vc.transform.position +
+                new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+            Debug.DrawLine(from, to);
+            if (vc.directionModifier == -1 &&
+               from.x < to.x) {
+                Debug.Log("RIGHT SURPRISE");
+            } 
+            if (vc.directionModifier == 1 &&
+                from.x > to.x) {
+                Debug.Log("LEFT SURPRISE");
+            } 
+        }
+
     }
 
 
