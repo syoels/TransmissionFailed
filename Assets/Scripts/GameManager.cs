@@ -161,6 +161,14 @@ public class GameManager : MonoBehaviour {
             Vector3 to = vc.transform.position +
                 new Vector3(rb.velocity.x, rb.velocity.y, 0f);
             Debug.DrawLine(from, to);
+            if (vc.directionModifier == -1 &&
+               from.x < to.x) {
+                Debug.Log("RIGHT SURPRISE");
+            } 
+            if (vc.directionModifier == 1 &&
+                from.x > to.x) {
+                Debug.Log("LEFT SURPRISE");
+            } 
         }
 
     }

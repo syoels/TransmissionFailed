@@ -24,6 +24,13 @@ public class VillagerController : AbstractController {
     int anim_die_trigger;
     int anim_isHeadBanging_bool;
 
+    // Wait
+    private bool waitForLand_ = false;
+    private bool WaitForLand {
+        get { return !isBeingControlled && waitForLand_; }
+        set { waitForLand_ = value;}
+    }
+
     [SerializeField]
     private Flamer target;
     public int directionModifier = LEFT_DIRECTION;
@@ -77,6 +84,9 @@ public class VillagerController : AbstractController {
     }
 
     void FixedUpdate() {
+        if (WaitForLand) {
+            return;
+        }
         if (!isBeingControlled && IsGrounded() && !isHeadBanging) {
             MoveHorizontal(directionModifier);
             float y = transform.position.y - 1f;
@@ -128,6 +138,7 @@ public class VillagerController : AbstractController {
             if (velocity != Vector2.zero) {
                 rb.velocity = velocity;
                 if (velocity.y >= 0) {
+                    WaitForLand = true;
                     animator.SetTrigger(anim_jump_trigger);
                 }
             }
@@ -142,6 +153,11 @@ public class VillagerController : AbstractController {
             isHeadBanging = false; // in case you didnt come from update
             animator.SetBool(anim_isHeadBanging_bool, false);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D c){
+        //TODO: basically we only need this for floors & platforms, consider changing
+        WaitForLand = false;
     }
 
 
@@ -215,6 +231,6 @@ public class VillagerController : AbstractController {
         gm.VillagerDied();
         gameObject.SetActive(false);
     }
-
+       
 }
 
