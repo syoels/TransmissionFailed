@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557942384072224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.76, y: 0.63, z: 0}
+  m_LocalPosition: {x: 16.34, y: 6.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4772285082906708}
@@ -331,7 +331,7 @@ MonoBehaviour:
   RIGHT: 275
   LEFT: 276
   UP: 273
-  CONTROL: 306
+  CONTROL: 32
   controlRadius: 6
   haloAnimator: {fileID: 0}
 --- !u!212 &212465310509766570
