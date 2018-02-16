@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : AbstractController {
 
     public float controlRadius = 10f;
+    private float haloScaleFactor = 0.285f;
+    private Transform halo;
 
 	public override float moveSpeed { get { return 3.25f; }}
 	public override float jumpForce { get { return 140f; }} 
@@ -28,7 +30,10 @@ public class PlayerController : AbstractController {
 		anim_control_trigger = Animator.StringToHash ("control");
 		anim_control_release_trigger = Animator.StringToHash ("controlRelease");
 
-		haloAnimator = transform.Find ("Halo").GetComponent<Animator> ();
+        
+        halo = transform.Find("Halo");
+        halo.localScale = new Vector3(controlRadius * haloScaleFactor, controlRadius * haloScaleFactor, 1f);
+        haloAnimator = halo.GetComponent<Animator> ();
 		anim_halo_in_control = Animator.StringToHash ("inControl"); 
     }
 	// Update is called once per frame
