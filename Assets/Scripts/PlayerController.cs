@@ -54,7 +54,7 @@ public class PlayerController : AbstractController {
 		bool isMovingHorizontally = false;
 
         isControllingPrev = isControlling;
-        isControlling = Input.GetKey(KeyCode.LeftControl);
+        isControlling = Input.GetKey(CONTROL);
 		if (isControlling) {
 			animator.SetTrigger (anim_control_trigger);
 		} else {

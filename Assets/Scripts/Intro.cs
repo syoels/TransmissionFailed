@@ -12,12 +12,25 @@ public class Intro : MonoBehaviour {
 
 
     public GameObject blackPanel; 
+    public SceneField nextLevel;
+
+
+    enum CurrentState {
+        START,
+        COMICS
+    };
+    private CurrentState currentState = CurrentState.START;
+    private KeyCode[] startGameKeys = { KeyCode.Space, KeyCode.RightArrow, KeyCode.KeypadEnter};
+    private KeyCode[] startComicsKeys = { KeyCode.Space, KeyCode.KeypadEnter, KeyCode.Return};
+    private KeyCode[] exitComicsKeys = { KeyCode.Escape, KeyCode.LeftArrow};
 
 
 
 	void Start()
 	{
-        Debug.Log("In start");
+
+
+
 		Button btnNew = newGame.GetComponent<Button>();
         Button btnEsc = esc.GetComponent<Button>();
         Button btnNxt = next.GetComponent<Button>();
@@ -26,19 +39,46 @@ public class Intro : MonoBehaviour {
         btnNxt.onClick.AddListener(StartGame);
 	}
 
+    void Update(){
+        if (Input.anyKey) {
+            if (currentState == CurrentState.START && 
+                IsOneOfKeysArrayPressed(startComicsKeys)) {
+                ShowComics();
+            } else if (currentState == CurrentState.COMICS && 
+                IsOneOfKeysArrayPressed(exitComicsKeys)) {
+                HideComics();
+            } else if (currentState == CurrentState.COMICS && 
+                IsOneOfKeysArrayPressed(startGameKeys)) {
+                StartGame();
+            } 
+        }
+    }
+
     public void ShowComics(){
-        Debug.Log("In ShowComics");
         blackPanel.gameObject.SetActive(true);
+        currentState = CurrentState.COMICS;
     }
 
     public void HideComics(){
-        Debug.Log("In HideComics");
         blackPanel.gameObject.SetActive(false);
+        currentState = CurrentState.START;
     }
 
     public void StartGame()
     {
-        Debug.Log("In StartGame");
-		SceneManager.LoadScene ("Level_1");
+        if (this.nextLevel != null) {
+            SceneManager.LoadScene(nextLevel);
+        } else {
+            SceneManager.LoadScene("Level_1_tutorial");
+        }
 	}
+
+    private bool IsOneOfKeysArrayPressed(KeyCode[] keys){
+        foreach (KeyCode c in keys) {
+            if (Input.GetKeyDown(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

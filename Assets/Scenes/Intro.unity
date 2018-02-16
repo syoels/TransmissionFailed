@@ -655,6 +655,9 @@ MonoBehaviour:
   next: {fileID: 388766254}
   esc: {fileID: 111501718}
   blackPanel: {fileID: 1186589869}
+  nextLevel:
+    m_SceneAsset: {fileID: 102900000, guid: d5941818e63ff77498a1e97333004fcc, type: 3}
+    m_SceneName: Level_1_tutorial
 --- !u!1 &1782845687
 GameObject:
   m_ObjectHideFlags: 0
