@@ -595,11 +595,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114345465523779508, guid: fc4b153788efac64fa36b9b25d130073,
-        type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1052935665}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4b153788efac64fa36b9b25d130073, type: 2}
   m_IsPrefabParent: 0
@@ -1082,11 +1077,6 @@ EdgeCollider2D:
   m_Points:
   - {x: -4.10415, y: 1.0084205}
   - {x: 2.4949155, y: 1.0044618}
---- !u!4 &1052935665 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4403420602960410, guid: a2c28473fbd84e74180d89fab851ec47,
-    type: 2}
-  m_PrefabInternal: {fileID: 1899424134}
 --- !u!4 &1072730165 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4871363057681658, guid: 60d0da095c7684944aa9a5cc9bb8f8eb,
@@ -2129,6 +2119,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300014, guid: b65445df240cc334686fa862a9109adf,
         type: 3}
+    - target: {fileID: 114298304117928010, guid: a2c28473fbd84e74180d89fab851ec47,
+        type: 2}
+      propertyPath: CONTROL
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c28473fbd84e74180d89fab851ec47, type: 2}
   m_IsPrefabParent: 0
