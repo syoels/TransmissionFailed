@@ -6876,7 +6876,7 @@ Prefab:
     - target: {fileID: 114298304117928010, guid: a2c28473fbd84e74180d89fab851ec47,
         type: 2}
       propertyPath: CONTROL
-      value: 32
+      value: 306
       objectReference: {fileID: 0}
     - target: {fileID: 114298304117928010, guid: a2c28473fbd84e74180d89fab851ec47,
         type: 2}
