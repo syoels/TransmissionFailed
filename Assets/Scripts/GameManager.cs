@@ -80,8 +80,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         // Win after a villager is dead but player still passed the required capacity
-        bool allVillagersAreGone = (deadVillagers + savedVillagers == totalVillagers);
-        if (allVillagersAreGone && percentAlive > villagersToSavePercent) {
+        if (WinConditionsApply()) {
             GameWon();
         }
     }
@@ -91,7 +90,7 @@ public class GameManager : MonoBehaviour {
         SetNotificationText("You Saved a Villager!\nRock On!!");
 		savedVillagers++; 
 		UpdateUIText ();
-        if (savedVillagers == livingVillagers) {
+        if (WinConditionsApply()) {
             GameWon();
         }
     }
@@ -109,6 +108,11 @@ public class GameManager : MonoBehaviour {
         Debug.Log("You won!! woo hoo");
         SetNotificationText("You Won! Woo hoo!");
         StartCoroutine(LoadNextLevel(5f));
+    }
+	
+    private bool WinConditionsApply(){
+    	bool allVillagersAreGone = (deadVillagers + savedVillagers == totalVillagers);
+        return (allVillagersAreGone && percentAlive > villagersToSavePercent);
     }
 
     //TODO: move all UI functions to UIManager
