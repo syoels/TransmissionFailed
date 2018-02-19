@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 322243441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.054, y: 0.09300002, z: 0}
-  m_LocalScale: {x: -0.8, y: 0.6, z: 1}
+  m_LocalScale: {x: -0.8, y: 0.6, z: 0.99}
   m_Children: []
   m_Father: {fileID: 1665702449}
   m_RootOrder: 1
@@ -540,7 +540,7 @@ Transform:
   m_GameObject: {fileID: 674982255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 14.94, y: 0, z: 0}
-  m_LocalScale: {x: 2.096, y: 2.004, z: 1}
+  m_LocalScale: {x: 2.096, y: 2.004, z: 0.99}
   m_Children: []
   m_Father: {fileID: 1212428276}
   m_RootOrder: 1
@@ -1488,12 +1488,12 @@ Prefab:
         type: 2}
       propertyPath: nextLevel.m_SceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 94454794a40613a4691f274e8f7c6e6b,
+      objectReference: {fileID: 102900000, guid: 2b45b0284f254ca4d9f6ae4a11087045,
         type: 3}
     - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
         type: 2}
       propertyPath: nextLevel.m_SceneName
-      value: Level_2_stairs
+      value: Intro
       objectReference: {fileID: 0}
     - target: {fileID: 114812467042618366, guid: 4cae06df1efaf484786fe91a3e1c9b8f,
         type: 2}
