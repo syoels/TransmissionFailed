@@ -130,7 +130,10 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator Replay(float time){
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene ("Intro");
+	
+	 // Restart level
+	 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene ("Intro"); // To restart entire game
     }
 
     IEnumerator LoadNextLevel(float time){
