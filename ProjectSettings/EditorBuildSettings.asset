@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_3_tower.unity
     guid: 5220a34b0f8aaac44bdb7e5affd8c175
+  - enabled: 1
+    path: Assets/Scenes/Level_4_birdfishing.unity
+    guid: b375a944a7045a74394e00507e610c2a
